@@ -1,4 +1,6 @@
-public abstract class Units {
+import java.util.Random;
+
+public abstract class Units implements GameInterface {
     public double maxHP, curHP;
     public int speed;
     public int defence;
@@ -20,10 +22,14 @@ public abstract class Units {
         this.initiative = initiative;
         this.cooldown = cooldown;
     }
-
-    public boolean Move() {
-        if (speed > 0)
-            return true;
-        return false;
+    @Override
+    public void Move() {
     }
+
+    @Override
+    public String GetInfo() {
+        return this.getClass()+" "+this.curHP +" ОЗ из "+this.maxHP+", Скорость "+this.speed+", Защита "+this.defence+", Урон "+this.damage+", Инициатива "+this.initiative+", Перезарядка "+this.cooldown;
+    }
+
+
 }
