@@ -11,12 +11,12 @@ public class Main implements GameInterface {
         System.out.println("----------------------");
         team2.forEach(n -> System.out.println(n.getInfo()));
         System.out.println("----------------------");
-        team1.get(0).move(team2);
-        team2.get(0).move(team1);
+        team1.get(Sniper.class.getModifiers()).move(team1,team2);
+
     }
 
     @Override
-    public void move(ArrayList<Units> team1) {
+    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
 
     }
 
@@ -24,6 +24,8 @@ public class Main implements GameInterface {
     public String getInfo() {
         return null;
     }
+
+
     public static ArrayList<Units> GenerateCharacter() {
         int teamCount = 10;
         Random rand = new Random();

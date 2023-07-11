@@ -31,7 +31,8 @@ public abstract class Units implements GameInterface {
     }
 
     @Override
-    public void move(ArrayList<Units> team1) {
+    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
+
     }
 
     @Override
@@ -50,4 +51,5 @@ public abstract class Units implements GameInterface {
         }
         return nearestUnit;
     }
+
 }

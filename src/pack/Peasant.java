@@ -8,9 +8,12 @@ public class Peasant extends Units {
     }
 
     @Override
-    public void move(ArrayList<Units> team1) {
-        Units tmp = findNearest(team1);
-        System.out.println(tmp.getInfo() + " расстояние " + coordinates.findDistance(tmp.coordinates));
+    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
+        Units tmp1 = findNearest(allies);
+        Units tmp2 = findNearest(enemy);
+        System.out.println(tmp1.getInfo() + " расстояние " + coordinates.findDistance(tmp1.coordinates));
+        System.out.println(tmp2.getInfo() + " расстояние " + coordinates.findDistance(tmp2.coordinates));
     }
+
 
 }

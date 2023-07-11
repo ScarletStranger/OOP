@@ -12,7 +12,7 @@ public class Coordinates {
     public int findDistance(Coordinates coordinates) {
         int dx = coordinates.x - x;
         int dy = coordinates.y - y;
-        return (int) Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+        return (int) Math.sqrt((dx*dx) + (dy*dy));
     }
 
     @Override
