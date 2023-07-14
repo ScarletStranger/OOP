@@ -9,7 +9,8 @@ public abstract class Units implements GameInterface {
     public int damage;
     public int initiative;
     public int cooldown;
-    Coordinates coordinates;
+    public String state = "Stand";
+    public Coordinates coordinates;
 
     public Units(double maxHP,
                  double curHP,
