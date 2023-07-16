@@ -2,7 +2,6 @@ import pack.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main implements GameInterface {
@@ -47,36 +46,35 @@ public class Main implements GameInterface {
     }
 
     public static ArrayList<Units> GenerateCharacter() {
-        Random rand = new Random();
         ArrayList<Units> teams = new ArrayList<>();
-        int coorx = rand.nextInt(101);
-        int coory = rand.nextInt(1, 12);
-        for (int i = 0; i < 5; i++) {
-            teams.add(new Crossbowman(1, coory));
-            teams.add(new Mage(1, coory));
-            teams.add(new Monk(1, coory));
-            teams.add(new Peasant(1, coory));
-            teams.add(new Rogue(1, coory));
-            teams.add(new Sniper(1, coory));
-            //teams.add(new Spearman(coorx, coory));
-        }
+
+        teams.add(new Crossbowman(1, 1));
+        teams.add(new Mage(1, 2));
+        teams.add(new Monk(1, 3));
+        teams.add(new Peasant(1, 4));
+        teams.add(new Rogue(1, 5));
+        teams.add(new Sniper(1, 6));
+        teams.add(new Spearman(1, 7));
+        teams.add(new Peasant(1, 8));
+        teams.add(new Rogue(1, 9));
+        teams.add(new Sniper(1, 10));
         return teams;
+
     }
 
+
     public static ArrayList<Units> GenerateCharacter2() {
-        Random rand = new Random();
         ArrayList<Units> teams = new ArrayList<>();
-        int coorx = rand.nextInt(101);
-        int coory = rand.nextInt(1, 12);
-        for (int i = 0; i < 5; i++) {
-            teams.add(new Crossbowman(10, coory));
-            teams.add(new Mage(10, coory));
-            teams.add(new Monk(10, coory));
-            teams.add(new Peasant(10, coory));
-            teams.add(new Rogue(10, coory));
-            teams.add(new Sniper(10, coory));
-            //teams.add(new Spearman(coorx, coory));
-        }
+        teams.add(new Crossbowman(10, 1));
+        teams.add(new Mage(10, 2));
+        teams.add(new Monk(10, 3));
+        teams.add(new Peasant(10, 4));
+        teams.add(new Rogue(10, 5));
+        teams.add(new Sniper(10, 6));
+        teams.add(new Spearman(10, 7));
+        teams.add(new Peasant(10, 8));
+        teams.add(new Rogue(10, 9));
+        teams.add(new Sniper(10, 10));
         return teams;
     }
 }
