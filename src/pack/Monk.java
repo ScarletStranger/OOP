@@ -10,7 +10,7 @@ public class Monk extends Units {
     int mana = new Random().nextInt(10, 21);
     @Override
     public String getInfo() {
-        return "Монах " + this.curHP + " ОЗ из " + this.maxHP + ", Мана " + this.mana + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative + ", Перезарядка ";
+        return "Монах " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana;
     }
     @Override
     public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {

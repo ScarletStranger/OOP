@@ -18,6 +18,6 @@ public class Rogue extends Units {
     }
     @Override
     public String getInfo() {
-        return "Разбойник " + this.curHP + " ОЗ из " + this.maxHP + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative;
+        return "Разбойник " + this.curHP + "/" + this.maxHP;
     }
 }

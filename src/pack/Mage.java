@@ -12,7 +12,7 @@ public class Mage extends Units {
 
     @Override
     public String getInfo() {
-        return "Маг " + this.curHP + " ОЗ из " + this.maxHP + ", Мана " + this.mana + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative;
+        return "Маг " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana;
     }
 
     @Override

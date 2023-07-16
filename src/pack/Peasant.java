@@ -8,7 +8,7 @@ public class Peasant extends Units {
     }
     @Override
     public String getInfo() {
-        return "Крестьянин " + this.curHP + " ОЗ из " + this.maxHP + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative;
+        return "Крестьянин " + this.curHP + "/" + this.maxHP;
     }
     @Override
     public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {

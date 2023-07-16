@@ -29,11 +29,6 @@ public class Main implements GameInterface {
                     unit.move(team2, team1);
             }
         }
-//        team1.forEach(n -> System.out.println(n.getInfo()));
-//        System.out.println("----------------------");
-//        team2.forEach(n -> System.out.println(n.getInfo()));
-//        System.out.println("----------------------");
-
     }
 
     @Override

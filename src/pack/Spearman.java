@@ -17,6 +17,6 @@ public class Spearman extends Units {
     }
     @Override
     public String getInfo() {
-        return "Копейщик " + this.curHP + " ОЗ из " + this.maxHP + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative;
+        return "Копейщик " + this.curHP + "/" + this.maxHP;
     }
 }

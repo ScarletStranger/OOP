@@ -27,7 +27,7 @@ public abstract class Units implements GameInterface {
     }
     @Override
     public String getInfo() {
-        return "Юнит " + this.getClass() + " стоит на позиции " + this.coordinates + " имеет " + this.curHP + " ОЗ из " + this.maxHP + ", Защита " + this.defence + ", Урон " + this.damage + ", Инициатива " + this.initiative;
+        return null;
     }
     public Units findNearest(ArrayList<Units> team1) {
         int nearestDistance = Integer.MAX_VALUE;
