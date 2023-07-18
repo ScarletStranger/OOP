@@ -1,10 +1,12 @@
-package pack;
+package pack.units;
+
+import pack.TeamType;
 
 import java.util.ArrayList;
 
-public class Rogue extends Units {
-    public Rogue(int x, int y, TeamType teamType) {
-        super(150, 150,  10, 40, 7, x, y, teamType);
+public class Spearman extends Units {
+    public Spearman(int x, int y, TeamType teamType) {
+        super(150, 150, 80, 4, 1, x, y, teamType);
     }
 
     @Override
@@ -23,8 +25,9 @@ public class Rogue extends Units {
             state = "Moving";
         }
     }
+
     @Override
     public String getInfo() {
-        return "Разбойник " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + " " + state;
+        return "Копейщик " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + " " + state;
     }
 }

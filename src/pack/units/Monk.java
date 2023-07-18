@@ -1,14 +1,16 @@
-package pack;
+package pack.units;
+
+import pack.TeamType;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Monk extends Units {
+    int mana = new Random().nextInt(10, 21);
+
     public Monk(int x, int y, TeamType teamType) {
         super(100, 100, 3, 5, 3, x, y, teamType);
     }
-
-    int mana = new Random().nextInt(10, 21);
 
     @Override
     public String getInfo() {

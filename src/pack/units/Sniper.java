@@ -1,13 +1,15 @@
-package pack;
+package pack.units;
+
+import pack.TeamType;
 
 import java.util.ArrayList;
 
 public class Sniper extends Units {
+    public int arrowCount = 20;
+
     public Sniper(int x, int y, TeamType teamType) {
         super(100, 100, 10, 60, 6, x, y, teamType);
     }
-
-    public int arrowCount = 20;
 
     @Override
     public String getInfo() {

@@ -1,4 +1,6 @@
-package pack;
+package pack.units;
+
+import pack.TeamType;
 
 import java.util.ArrayList;
 
@@ -26,9 +28,6 @@ public class Crossbowman extends Units {
             if (allies.contains(Peasant.class))
                 System.out.println("Переход хода");
         }
-    }
-    public int getArrowCount() {
-        return arrowCount;
     }
 
     @Override
