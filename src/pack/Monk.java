@@ -4,30 +4,41 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Monk extends Units {
-    public Monk(int x, int y) {
-        super(100, 100, 3, 5, 3, x, y);
-    }
-    int mana = new Random().nextInt(10, 21);
-    @Override
-    public String getInfo() {
-        return "Монах " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana;
-    }
-    @Override
-    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
-        if (curHP > 0 && mana > 0) {
-            for (Units unit:allies) {
-                if (unit.curHP < maxHP){
-                    mana--;
-                    curHP += damage;
-                }
-            }
-        } else if (curHP > 0 && mana < 0) {
-            System.out.println("Недостаточно маны");
-        } else {
-            curHP = 0;
-            System.out.println("Монах умер");
-        }
+    public Monk(int x, int y, TeamType teamType) {
+        super(100, 100, 3, 5, 3, x, y, teamType);
     }
 
+    int mana = new Random().nextInt(10, 21);
+
+    @Override
+    public String getInfo() {
+        return "Монах " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana + " " + state;
+    }
+
+    @Override
+    public void step(ArrayList<Units> enemy, ArrayList<Units> allies) {
+        if (curHP <= 0) {
+            curHP = 0;
+            state = "Dead";
+            return;
+        }
+        Units tmp = allies.get(0);
+        double minHealth = 1;
+        if (mana > 0) {
+            for (Units unit : allies) {
+                if (unit.curHP / maxHP < minHealth && unit.curHP != 0) {
+                    state = "Healing";
+                    mana--;
+                    minHealth = unit.curHP / unit.maxHP;
+                    tmp = unit;
+                }
+            }
+        }
+        if (mana < 0) {
+            mana += 1;
+            state = "Busy";
+        }
+    }
 }
+
 

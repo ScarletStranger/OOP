@@ -5,35 +5,35 @@ import java.util.ArrayList;
 public class Crossbowman extends Units {
     public int arrowCount = 20;
 
-    public Crossbowman(int x, int y) {
-        super(100, 100, 4, 5, 4, x, y);
+    public Crossbowman(int x, int y, TeamType teamType) {
+        super(100, 100, 4, 50, 4, x, y, teamType);
     }
 
     @Override
-    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
+    public void step(ArrayList<Units> enemy, ArrayList<Units> allies) {
         if (curHP <= 0) {
             curHP = 0;
-            System.out.println("Арбалетчик убит");
+            state = "Dead";
+            return;
         }
-        if (arrowCount <= 0)
-            System.out.println("Закончились стрелы");
-        else {
+        if (arrowCount <= 0) {
+            state = "Stand";
+        } else {
             Units tmp2 = findNearest(enemy);
+            state = "Attack";
             arrowCount--;
-            tmp2.curHP = tmp2.curHP - (damage + tmp2.defence);
+            tmp2.curHP = tmp2.curHP - (damage - tmp2.defence);
             if (allies.contains(Peasant.class))
                 System.out.println("Переход хода");
         }
-
     }
-
     public int getArrowCount() {
         return arrowCount;
     }
 
     @Override
     public String getInfo() {
-        return "Арбалетчик" + this.curHP + "/" + this.maxHP + ", стрел " + this.arrowCount;
+        return "Арбалетчик " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", стрел " + this.arrowCount + " " + state;
     }
 }
 

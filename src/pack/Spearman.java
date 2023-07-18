@@ -3,20 +3,27 @@ package pack;
 import java.util.ArrayList;
 
 public class Spearman extends Units {
-    public Spearman(int x, int y) {
-        super(150, 150, 8, 4, 1, x, y);
+    public Spearman(int x, int y, TeamType teamType) {
+        super(150, 150, 80, 4, 1, x, y, teamType);
     }
     @Override
-    public void move(ArrayList<Units> enemy, ArrayList<Units> allies) {
-        if (curHP<=0){
+    public void step(ArrayList<Units> enemy, ArrayList<Units> allies) {
+        Units tmp = findNearest(enemy);
+        if (curHP <= 0) {
             curHP = 0;
-            System.out.println("Копейщик умер");
+            state = "Dead";
+            return;
+        }
+        if (coordinates.findDistance(tmp.coordinates) <= 1) {
+            state = "Attack";
+            tmp.curHP = tmp.curHP - (damage - tmp.defence);
         } else {
-            Units tmp = findNearest(enemy);
+            move(tmp.coordinates, allies);
+            state = "Moving";
         }
     }
     @Override
     public String getInfo() {
-        return "Копейщик " + this.curHP + "/" + this.maxHP;
+        return "Копейщик " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + " " + state;
     }
 }
