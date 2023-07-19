@@ -31,43 +31,8 @@ public abstract class Units implements GameInterface {
         this.teamType = teamType;
     }
 
-    public void move(Coordinates coordinates, ArrayList<Units> allies) {
-//        if (!coordinates.containsByPosition(coordinates.newPosition(coordinates), allies))
-//        this.coordinates = coordinates.newPosition(coordinates);
-        newPosition();
-    }
+    public abstract void move(Coordinates nearest, ArrayList<Units> enemy, ArrayList<Units> allies);
 
-    public void newPosition() {
-        if (this.teamType.equals(TeamType.ENEMIES)) {
-            this.coordinates.y += 1;
-        } else this.coordinates.y -= 1;
-    }
-
-    //    public Coordinates newPosition(Coordinates coordinates) {
-//        Coordinates tmpCoor = new Coordinates(x, y);
-//        if (Math.abs(coordinates.x - x) > Math.abs(coordinates.y - y)) {
-//            if (coordinates.x - x > 0)
-//                tmpCoor.x += 1;
-//            else
-//                tmpCoor.x -= 1;
-//        }
-//        if (Math.abs(coordinates.x - x) < Math.abs(coordinates.y - y)) {
-//            if (coordinates.y - y > 0)
-//                tmpCoor.y += 1;
-//            else
-//                tmpCoor.y -= 1;
-//        }
-//        if (Math.abs(coordinates.x - x) == Math.abs(coordinates.y - y)) {
-//            if (coordinates.x - x > 0) {
-//                tmpCoor.x += 1;
-//                tmpCoor.y += 1;
-//            } else {
-//                tmpCoor.x -= 1;
-//                tmpCoor.y -= 1;
-//            }
-//        }
-//        return tmpCoor;
-//    }
     @Override
     public void step(ArrayList<Units> enemy, ArrayList<Units> allies) {
     }
@@ -81,7 +46,7 @@ public abstract class Units implements GameInterface {
         int nearestDistance = Integer.MAX_VALUE;
         Units nearestUnit = null;
         for (int i = 0; i < team1.size(); i++) {
-            if (coordinates.findDistance(team1.get(i).coordinates) < nearestDistance) {
+            if (coordinates.findDistance(team1.get(i).coordinates) < nearestDistance && team1.get(i).curHP > 0) {
                 nearestUnit = team1.get(i);
                 nearestDistance = coordinates.findDistance(team1.get(i).coordinates);
             }

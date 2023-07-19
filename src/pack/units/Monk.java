@@ -1,5 +1,6 @@
 package pack.units;
 
+import pack.Coordinates;
 import pack.TeamType;
 
 import java.util.ArrayList;
@@ -9,12 +10,18 @@ public class Monk extends Units {
     int mana = new Random().nextInt(10, 21);
 
     public Monk(int x, int y, TeamType teamType) {
-        super(100, 100, 3, 5, 3, x, y, teamType);
+        super(100, 100, 3, 12, 3, x, y, teamType);
     }
 
     @Override
     public String getInfo() {
         return "Монах " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana + " " + state;
+    }
+
+
+    @Override
+    public void move(Coordinates nearest, ArrayList<Units> enemy, ArrayList<Units> allies) {
+
     }
 
     @Override
@@ -24,15 +31,14 @@ public class Monk extends Units {
             state = "Dead";
             return;
         }
-        Units tmp = allies.get(0);
         double minHealth = 1;
         if (mana > 0) {
             for (Units unit : allies) {
                 if (unit.curHP / maxHP < minHealth && unit.curHP != 0) {
                     state = "Healing";
                     mana--;
+                    unit.curHP += -damage;
                     minHealth = unit.curHP / unit.maxHP;
-                    tmp = unit;
                 }
             }
         }

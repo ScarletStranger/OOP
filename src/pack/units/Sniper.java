@@ -1,5 +1,6 @@
 package pack.units;
 
+import pack.Coordinates;
 import pack.TeamType;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ public class Sniper extends Units {
     public int arrowCount = 20;
 
     public Sniper(int x, int y, TeamType teamType) {
-        super(100, 100, 10, 60, 6, x, y, teamType);
+        super(100, 100, 5, 16, 6, x, y, teamType);
     }
 
     @Override
@@ -16,8 +17,9 @@ public class Sniper extends Units {
         return "Снайпер " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", стрел " + this.arrowCount + " " + state;
     }
 
-    public int getArrowCount() {
-        return arrowCount;
+
+    @Override
+    public void move(Coordinates nearest, ArrayList<Units> enemy, ArrayList<Units> allies) {
     }
 
     @Override
@@ -25,17 +27,21 @@ public class Sniper extends Units {
         if (curHP <= 0) {
             curHP = 0;
             state = "Dead";
+            return;
         }
         if (arrowCount <= 0)
             state = "Stand";
         else {
-            Units tmp2 = findNearest(enemy);
+            Units tmp = findNearest(enemy);
+            if (tmp==null)
+                return;
             state = "Attack";
             arrowCount--;
-            tmp2.curHP = tmp2.curHP - (damage - tmp2.defence);
+            tmp.curHP = tmp.curHP - (damage - tmp.defence);
+            if (tmp.curHP <= 0)
+                tmp.curHP = 0;
             if (allies.contains(Peasant.class))
                 return;
         }
-
     }
 }
