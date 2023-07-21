@@ -39,10 +39,12 @@ public class Mage extends Units {
             state = "Attack";
             mana--;
             tmp.curHP = tmp.curHP - (damage - tmp.defence);
-            if (tmp.curHP <= 0)
+            if (tmp.curHP <= 0) {
                 tmp.curHP = 0;
+                return;
+            }
         }
-        if (mana < 0) {
+        if (mana <= 0) {
             mana += 1;
             state = "Busy";
         }

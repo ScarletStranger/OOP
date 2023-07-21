@@ -14,16 +14,9 @@ public class Monk extends Units {
     }
 
     @Override
-    public String getInfo() {
-        return "Монах " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana + " " + state;
-    }
-
-
-    @Override
     public void move(Coordinates nearest, ArrayList<Units> enemy, ArrayList<Units> allies) {
 
     }
-
     @Override
     public void step(ArrayList<Units> enemy, ArrayList<Units> allies) {
         if (curHP <= 0) {
@@ -38,15 +31,18 @@ public class Monk extends Units {
                     state = "Healing";
                     mana--;
                     unit.curHP += -damage;
-                    minHealth = unit.curHP / unit.maxHP;
+                    return;
                 }
             }
         }
         if (mana < 0) {
             mana += 1;
             state = "Busy";
+
         }
     }
+    @Override
+    public String getInfo() {
+        return "Монах " + coordinates.toString() + " " + this.curHP + "/" + this.maxHP + ", Мана " + this.mana + " " + state;
+    }
 }
-
-

@@ -34,16 +34,16 @@ public class Rogue extends Units {
 
     @Override
     public void move(Coordinates nearest, ArrayList<Units> enemy, ArrayList<Units> allies) {
-        if (coordinates.x < nearest.x && isCoordinateFree(coordinates.x + 1, enemy, allies)) {
+        if (coordinates.x < nearest.x && isXFree(coordinates.x + 1, enemy, allies)) {
             coordinates.x += 1;
-        } else if (isCoordinateFree(coordinates.x - 1, enemy, allies)) {
+        } else if (isXFree(coordinates.x - 1, enemy, allies)) {
             coordinates.x -= 1;
-
         }
+        else coordinates.y -= 1;
 
     }
 
-    private boolean isCoordinateFree(int targetCoordinate, ArrayList<Units> enemy, ArrayList<Units> allies) {
+    private boolean isXFree(int targetCoordinate, ArrayList<Units> enemy, ArrayList<Units> allies) {
         ArrayList<Units> all = new ArrayList<>();
         all.addAll(enemy);
         all.addAll(allies);

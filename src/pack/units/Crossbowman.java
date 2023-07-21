@@ -6,7 +6,7 @@ import pack.TeamType;
 import java.util.ArrayList;
 
 public class Crossbowman extends Units {
-    public int arrowCount = 20;
+    public int arrowCount = 10;
 
     public Crossbowman(int x, int y, TeamType teamType) {
         super(100, 100, 4, 15, 4, x, y, teamType);
@@ -18,6 +18,7 @@ public class Crossbowman extends Units {
         } else if (isCoordinateFree(coordinates.x - 1, enemy, allies)) {
             coordinates.x -= 1;
         }
+        else coordinates.y -= 1;
     }
 
     private boolean isCoordinateFree(int targetCoordinateX, ArrayList<Units> enemy, ArrayList<Units> allies) {
@@ -44,7 +45,18 @@ public class Crossbowman extends Units {
             return;
         }
         if (arrowCount <= 0) {
-            state = "Stand";
+            Units tmp = findNearest(enemy);
+            if (tmp == null)
+                return;
+            if (coordinates.findDistance(tmp.coordinates) <= 1) {
+                state = "Attack";
+                tmp.curHP = tmp.curHP - ((damage/2) - tmp.defence);
+                if (tmp.curHP <= 0)
+                    tmp.curHP = 0;
+            } else {
+                move(tmp.coordinates, enemy, allies);
+                state = "Moving";
+            }
         } else {
             Units tmp = findNearest(enemy);
             if (tmp == null)
